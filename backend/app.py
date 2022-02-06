@@ -41,7 +41,7 @@ def questions_api_all():
 
 @app.route('/api/v1/resources/questions', methods=['GET'])
 def questions_api_id():
-    # Ex. /api/v1/resources/question?location=90018&date=2022-02-05
+    # Ex. /api/v1/resources/questions?location=90018&date=2022-02-06
     location = request.args.get('location')
     date = request.args.get('date')
 
@@ -61,7 +61,6 @@ def questions_api_id():
         AND YEAR(date) = {1}
         AND MONTH(date) = {2}
         AND DAY(date) = {3}
-        ORDER BY RAND()
         LIMIT 1;
         '''.format(location, year, month, day)
         
@@ -91,7 +90,7 @@ def answers_api_all():
 
 @app.route('/api/v1/resources/answers', methods=['GET'])
 def answers_api_id():
-    # Ex. /api/v1/resources/answer?location=90018&date=2022-05-06
+    # Ex. /api/v1/resources/answers?location=90018&date=2022-02-06
     location = request.args.get('location')
     date = request.args.get('date')
 
@@ -112,7 +111,7 @@ def answers_api_id():
         AND MONTH(date) = {2}
         AND DAY(date) = {3}
         ORDER BY RAND()
-        LIMIT 10;
+        LIMIT 5;
         '''.format(location, year, month, day)
         
         cursor.execute(query)
