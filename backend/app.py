@@ -29,9 +29,11 @@ def home():
 
 @app.route('/api/v1/resources/questions/all', methods=['GET'])
 def questions_api_all():
+    # Connect to database
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
+    # Select and retrieve all results
     cursor.execute("SELECT * FROM Questions;")
     result = cursor.fetchall()
     return jsonify(result)
@@ -39,28 +41,90 @@ def questions_api_all():
 
 @app.route('/api/v1/resources/questions', methods=['GET'])
 def questions_api_id():
+    # Ex. /api/v1/resources/question?location=90018&date=2022-02-05
     location = request.args.get('location')
+    date = request.args.get('date')
 
-    # Check if an ID was provided as part of the URL.
-    # If ID is provided, assign it to a variable.
-    # If no ID is provided, display an error in the browser.
-    if 'id' in request.args:
-        id = int(request.args['id'])
-    else:
-        return "Error: No id field provided. Please specify an id."
+    if date and location: # Correct API query
+        # Extracting components
+        year = date.split('-')[0]
+        month = date.split('-')[1]
+        day = date.split('-')[2]
 
-    # Create an empty list for our results
-    results = []
+        # Connecting to database and querying results
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
 
-    # Loop through the data and match results that fit the requested ID.
-    # IDs are unique, but other fields might return many results
-    for book in books:
-        if book['id'] == id:
-            results.append(book)
+        query = '''
+        SELECT question FROM Questions
+        WHERE location = {0}
+        AND YEAR(date) = {1}
+        AND MONTH(date) = {2}
+        AND DAY(date) = {3}
+        ORDER BY RAND()
+        LIMIT 1;
+        '''.format(location, year, month, day)
+        
+        cursor.execute(query)
+        result = cursor.fetchone()
+        
+        # Returning results to request
+        if result:
+            return jsonify(result)
+        else:
+            return "Error"
+    else: # Incorrect API usage
+        return "Error"
 
-    # Use the jsonify function from Flask to convert our list of
-    # Python dictionaries to the JSON format.
-    return jsonify(results)
+
+@app.route('/api/v1/resources/answers/all', methods=['GET'])
+def answers_api_all():
+    # Connect to database
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+
+    # Select and retrieve all results
+    cursor.execute("SELECT * FROM Answers;")
+    result = cursor.fetchall()
+    return jsonify(result)
+
+
+@app.route('/api/v1/resources/answers', methods=['GET'])
+def answers_api_id():
+    # Ex. /api/v1/resources/answer?location=90018&date=2022-05-06
+    location = request.args.get('location')
+    date = request.args.get('date')
+
+    if date and location: # Correct API query
+        # Extracting components
+        year = date.split('-')[0]
+        month = date.split('-')[1]
+        day = date.split('-')[2]
+
+        # Connecting to database and querying results
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
+
+        query = '''
+        SELECT answer FROM Answers
+        WHERE location = {0}
+        AND YEAR(date) = {1}
+        AND MONTH(date) = {2}
+        AND DAY(date) = {3}
+        ORDER BY RAND()
+        LIMIT 10;
+        '''.format(location, year, month, day)
+        
+        cursor.execute(query)
+        result = cursor.fetchall()
+        
+        # Returning results to request
+        if result:
+            return jsonify(result)
+        else:
+            return "Error"
+    else: # Incorrect API usage
+        return "Error"
 
 if __name__ == "__main__":
     app.run()
