@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  background: linear-gradient(0deg, rgba(250,225,221,1) 0%, rgba(248,237,235,1) 35%, rgba(232,232,228,1) 100%);
+}
+
+h1 {
+  text-shadow: 4px 4px black;
+}
+
+.home-wrapper {
+  margin: 100px 0px;
+  max-width: 800px;
+  background-color: #FFF;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 8px #d8d8d8);
+  border-radius: 22px;
+}
+
+.title {
+  font-size: calc(20px + 2vmin);
+  color: #FEC5BB;
+  font-family: SupermercadoOne,Georgia, serif;
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.content-text {
+  font-size: 16px;
+  color: #000;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  font-weight: 400;
+  margin: 20px;
+}
+
+.question-text {
+  font-size: 12px;
+  color: #000;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  font-weight: 400;
+  cursor: pointer;
+}
+.question-text:hover {
+  text-decoration: underline;
+}
+
+.button-wrapper {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+.button-pushable {
+  background: #FEC5BB;
+  border-radius: 10px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  margin:10px;
+}
+.button-front {
+  display: block;
+  padding: 12px 32px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  background: #FCD5CE;
+  color: black;
+  transform: translateY(-6px);
+}
+
+.button-pushable:active .button-front {
+  transform: translateY(-2px);
+}
+
+.text-field {
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.footnote {
+  font-size: 12px;
+  color: #000;
+  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  font-weight: 400;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+}
+
+@font-face {
+  font-family: 'SupermercadoOne';
+  src: local('SupermercadoOne'), url(./fonts/SupermercadoOne-Regular.ttf) format('truetype');
+}
