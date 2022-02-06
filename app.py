@@ -6,7 +6,7 @@ CORS(app) #comment this on deployment
 
 @app.route('/')
 def index():
-    return {'name': 'alice',
+    return {'name': 'api is working',
                     'email': 'alice@outlook.com'}
 
 if __name__ == '__main__':
