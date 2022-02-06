@@ -2,6 +2,7 @@ import flask
 from flask import request, jsonify
 import mysql.connector
 from mysql.connector.constants import ClientFlag
+from flask_cors import CORS # comment on deployment
 
 # Setting up configuration for GCP Database
 config = {
@@ -17,6 +18,7 @@ config = {
 
 # Setting up Flask application
 app = flask.Flask(__name__)
+CORS(app) # comment on deployment
 app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
@@ -26,7 +28,7 @@ def home():
 
 
 @app.route('/api/v1/resources/questions/all', methods=['GET'])
-def api_all():
+def questions_api_all():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
@@ -35,8 +37,10 @@ def api_all():
     return jsonify(result)
 
 
-@app.route('/api/v1/resources/books', methods=['GET'])
-def api_id():
+@app.route('/api/v1/resources/questions', methods=['GET'])
+def questions_api_id():
+    location = request.args.get('location')
+
     # Check if an ID was provided as part of the URL.
     # If ID is provided, assign it to a variable.
     # If no ID is provided, display an error in the browser.
