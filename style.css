@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #b2f7c2;
+  background-color: #f4eedf;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -12,6 +12,11 @@ body {
   width: 352px;
   height: 198px;
   margin: 0 auto;
-  margin-top: 20px;
   outline: 1px solid #ffffff;
+
+  transform: scale(1.5) translateY(50%);
+}
+
+.game-container canvas {
+  image-rendering: pixelated;
 }
