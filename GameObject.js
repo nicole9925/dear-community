@@ -5,7 +5,7 @@ class GameObject {
       this.direction = config.direction || "down"
       this.sprite = new ObjectSprite({
          gameObject: this,
-         src: config.src || "images/sunflower.png"
+         src: config.src || "./images/sunflower.png"
       })
    }
    update() {

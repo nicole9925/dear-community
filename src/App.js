@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Grid, Typography, Button, TextField } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Game from './game/Game.js'
 
 let dummydate = '2022-05-06';
 let dummylocation = '90018'
@@ -28,8 +29,7 @@ function App() {
             <h1>Dear Community...</h1>
           </Grid>
           <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/play" element={<Home/>}/>
+            <Route path="/" exact element={<Home/>}/>
           </Routes>
           {/* <Grid className="gridtest" item xs={12}>            
             {getMessage.status === 200 ? 
@@ -52,11 +52,11 @@ const Home = () => (
     <Grid className="button-wrapper" item xs={12}>
       <TextField className="text-field" fullWidth variant="outlined" placeholder='Enter your zip code (eg. 90089)'/>
       <Grid>
-        <button class="button-pushable">
+        <button class="button-pushable" onClick={(e) => {e.preventDefault(); window.location.href='https://nicole9925.github.io/dear-community/';}}>
           <span class="button-front">
             Start
           </span>
-      </button>
+        </button>
       </Grid>
     </Grid>
     <p className='question-text'>Submit a question.</p>

@@ -33,7 +33,7 @@ class Overworld {
       this.directionInput = new DirectionInput();
       this.directionInput.init();
       this.startGameLoop();
-      this.sound = new Sound({music: "background.mp3"})
+      this.sound = new Sound({music: "./background.mp3"})
       this.sound.init();
    }
 }
