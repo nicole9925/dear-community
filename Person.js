@@ -10,7 +10,7 @@ class Person extends GameObject {
       }
       this.sprite = new Sprite({
          gameObject: this,
-         src: config.src || "images/char.png"
+         src: config.src || "./images/char.png"
       })
    }
    update(state) {

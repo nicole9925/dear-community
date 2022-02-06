@@ -20,35 +20,35 @@ class OverworldMap {
 
 window.OverworldMaps = {
    MainMap: {
-      lowerSrc: "/images/mapLower.png",
-      upperSrc: "/images/mapUpper.png",
+      lowerSrc: "./images/mapLower.png",
+      upperSrc: "./images/mapUpper.png",
       gameObjects: {
          hero: new Person({
             x: utils.withGrid(4),
             y: utils.withGrid(5)
          }),
          sunflower1: new GameObject({
-            src: "/images/sunflower.png", 
+            src: "./images/sunflower.png", 
             x: utils.withGrid(15),
             y: utils.withGrid(7)
          }),
          sunflower2: new GameObject({
-            src: "/images/sunflower.png", 
+            src: "./images/sunflower.png", 
             x: utils.withGrid(8),
             y: utils.withGrid(3)
          }),
          sunflower3: new GameObject({
-            src: "/images/sunflower.png", 
+            src: "./images/sunflower.png", 
             x: utils.withGrid(9),
             y: utils.withGrid(6)
          }),
          sunflower4: new GameObject({
-            src: "/images/sunflower.png", 
+            src: "./images/sunflower.png", 
             x: utils.withGrid(10),
             y: utils.withGrid(4)
          }),
          sunflower5: new GameObject({
-            src: "/images/sunflower.png", 
+            src: "./images/sunflower.png", 
             x: utils.withGrid(13),
             y: utils.withGrid(2)
          })
