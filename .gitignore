@@ -1,2 +1,6 @@
 /backend/*.pem
 /backend/password.txt
+/venv
+.vscode
+.DS_Store
+node_modules
