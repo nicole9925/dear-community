@@ -3,31 +3,37 @@ class Overworld {
       this.element = config.element;
       this.canvas = this.element.querySelector(".screen-canvas");
       this.ctx = this.canvas.getContext("2d");
-      console.log("here")
+      this.map = null;
+      this.sound = null;
+   }
+   
+   startGameLoop() {
+      const step = () => {
+         const cameraPerson = this.map.gameObjects.hero;
+         Object.values(this.map.gameObjects).forEach(object => {
+            object.update({
+               arrow: this.directionInput.direction
+            })
+         })
+         this.map.drawLowerImage(this.ctx, cameraPerson);
+         Object.values(this.map.gameObjects).forEach(object => {
+            object.sprite.draw(this.ctx, cameraPerson);
+         })
+         this.map.drawUpperImage(this.ctx, cameraPerson);
+         requestAnimationFrame(() => {
+            // Object.values(this.map.gameObjects)
+            step();
+         })
+      } 
+      step();
    }
 
    init() {
-      const image = new Image();
-      image.onload = () => {
-         this.ctx.drawImage(image, 0, 0)
-      }
-      image.src = "/images/map.png";
-      const x = 6;
-      const y = 3;
-
-      const hero = new Image();
-      hero.onload = () => {
-         this.ctx.drawImage(
-            hero, 
-            0, 
-            0,
-            48,
-            48,
-            x * 22,
-            y * 22,
-            45,
-            45)
-      }
-      hero.src = "images/char.png"
+      this.map = new OverworldMap(window.OverworldMaps.MainMap)
+      this.directionInput = new DirectionInput();
+      this.directionInput.init();
+      this.startGameLoop();
+      this.sound = new Sound({music: "background.mp3"})
+      this.sound.init();
    }
 }
